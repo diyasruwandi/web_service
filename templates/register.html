@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            
+        }
+
+        .register-card {
+            background: #ffffff;
+            width: 350px;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .alert {
+            background: rgba(255, 88, 88, 0.15);
+            border-left: 4px solid #ff3b3b;
+            padding: 10px;
+            border-radius: 6px;
+            color: #c0392b;
+            margin-bottom: 15px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+            outline: none;
+            transition: .2s;
+        }
+
+        input:focus {
+            border-color: #2b8cff;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #2b8cff;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        button:hover {
+            background: #1974e8;
+        }
+
+        .login-link {
+            margin-top: 10px;
+            display: block;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="register-card">
+        <h2>Register</h2>
+
+        {% if error %}
+        <div class="alert">
+            ⚠️ {{ error }}
+        </div>
+        {% endif %}
+
+        <form method="POST">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" required />
+            </div>
+
+            <button type="submit">Daftar</button>
+        </form>
+
+        <a href="/login" class="login-link">Sudah punya akun? Login</a>
+    </div>
+</body>
+</html>

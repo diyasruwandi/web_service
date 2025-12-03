@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Cek Komposisi Makanan</h2>
+<form method="POST" action="{{ url_for('cek') }}">
+    <label>Nama Makanan:</label>
+    <input type="text" name="nama_makanan" required>
+    <label>Jumlah (gram):</label>
+    <input type="number" name="jumlah" required>
+    <button type="submit">Cek Komposisi</button>
+</form>
+
+{% if hasil %}
+<h3>Hasil Komposisi:</h3>
+<ul>
+    <li>Kalori: {{ hasil.kalori }} kcal</li>
+    <li>Protein: {{ hasil.protein }} g</li>
+    <li>Lemak: {{ hasil.lemak }} g</li>
+    <li>Karbohidrat: {{ hasil.karbohidrat }} g</li>
+</ul>
+{% endif %}
+{% endblock %}

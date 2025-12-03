@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Artikel</title>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 60%;
+            margin: 40px auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #2b8cff;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-save {
+            width: 100%;
+            padding: 12px;
+            background: #2b8cff;
+            border: none;
+            color: white;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+        .btn-save:hover {
+            background: #1974e8;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            color: #2b8cff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Edit Artikel</h2>
+
+        <form method="POST">
+
+            <div class="form-group">
+                <label>Judul Artikel</label>
+                <input type="text" name="title" value="{{ article.title }}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Image URL</label>
+                <input type="text" name="image_url" value="{{ article.image_url }}">
+            </div>
+
+            <div class="form-group">
+                <label>Deskripsi</label>
+                <textarea name="description" required>{{ article.description }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Link Berita / Referensi</label>
+                <input type="text" name="news_link" value="{{ article.news_link }}">
+            </div>
+
+            <button class="btn-save" type="submit">Simpan Perubahan</button>
+
+        </form>
+
+        <a href="/admin/articles" class="back-link">← Kembali ke daftar artikel</a>
+    </div>
+
+</body>
+</html>

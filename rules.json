@@ -1,0 +1,38 @@
+{
+    "rules": [
+        {
+            "keywords": ["makanan sehat", "makan sehat", "pola makan sehat"],
+            "response": "Untuk menjaga kesehatan, konsumsi makanan bergizi seimbang seperti sayur, buah, protein tanpa lemak, dan hindari makanan tinggi gula serta lemak trans."
+        },
+        {
+            "keywords": ["minuman sehat", "minum sehat"],
+            "response": "Minuman sehat termasuk air putih, teh tanpa gula, infused water, dan jus tanpa tambahan gula."
+        },
+        {
+            "keywords": ["bahaya gula", "gula berlebih", "konsumsi gula"],
+            "response": "Konsumsi gula berlebih dapat meningkatkan risiko diabetes, obesitas, dan kerusakan gigi. Batasi konsumsi gula harian maksimal 50 gram."
+        },
+        {
+            "keywords": ["makanan berbahaya", "makanan tidak sehat", "junk food"],
+            "response": "Hindari makanan yang digoreng berulang, makanan cepat saji tinggi garam, minuman bersoda, dan makanan tinggi pengawet."
+        },
+        {
+            "keywords": ["aman tidak", "boleh tidak", "apakah aman"],
+            "response": "Keamanan makanan tergantung cara penyimpanan, kebersihan, dan kedaluwarsa. Pastikan selalu cek label dan kondisi makanan sebelum dikonsumsi."
+        },
+        {
+            "keywords": ["kedaluwarsa", "expired"],
+            "response": "Makanan kedaluwarsa sebaiknya tidak dikonsumsi karena berisiko menyebabkan keracunan atau gangguan pencernaan."
+        },
+        {
+            "keywords": ["diet", "tips diet"],
+            "response": "Untuk diet sehat, fokus pada kalori seimbang, konsumsi serat tinggi, cukup protein, kurangi gula, dan minum air cukup."
+        },
+        {
+            "keywords": ["air putih", "minum air"],
+            "response": "Orang dewasa dianjurkan minum 2 liter air per hari. Pastikan minum lebih banyak jika beraktivitas berat."
+        }
+    ],
+
+    "fallback": "Maaf, saya belum memahami pertanyaan tersebut. Silakan tanyakan hal mengenai kesehatan makanan atau minuman."
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEKKOMPOSISI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<div class="chatbot-btn" onclick="toggleChatbot()">💬</div>
+
+<!-- CHATBOX -->
+<div class="chatbot-box" id="chatbotBox">
+    <div class="chat-header">
+        Chatbot Kesehatan
+    </div>
+
+    <div class="chat-body" id="chatBody">
+        <!-- Pesan awal -->
+        <div class="msg bot-msg">Halo! Saya adalah chatbot informasi kesehatan makanan & minuman. Ada yang bisa saya bantu?</div>
+    </div>
+
+    <div class="chat-input">
+        <input type="text" id="chatInput" placeholder="Tulis pesan...">
+        <button onclick="sendMessage()">Kirim</button>
+    </div>
+</div>
+
+<body>
+     <header>
+        <div class="container">
+            <nav>
+                <div class="logo">CekKomposisi</div>
+                <!-- <ul class="nav-links">
+                    <li><a href="#">Explore</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#"><strong>Get Started</strong></a></li>
+                </ul> -->
+                <a href="/logout" class="logout-btn">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>CekKomposisi.<br>Tahu apa yang kamu konsumsi.</h1>
+                    <p class="hero-description">
+                        Temukan apa saja yang ada di balik setiap produk yang kamu pakai atau konsumsi. Aplikasi ini membantumu memilih produk yang lebih sehat, aman, dan sesuai kebutuhan. Lebih peduli terhadap tubuh dimulai dari mengetahui komposisinya.
+                    </p>
+                    <div class="garis"></div>
+                    <!-- <div class="cta-buttons">
+                        <button class="btn-primary">Get Started</button>
+                        <button class="btn-secondary">▶</button>
+                    </div> -->
+                </div>
+            </section>
+
+            <div class="stat-judul">Layanan Kami</div>
+            <section class="stats">
+                <!-- <div class="stat-item">
+                    <div class="stat-icon">💡</div>
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Ideas<br>for launching</div>
+                </div> -->
+                <div class="stat-item">
+                    <div class="stat-icon">🤖</div>
+                    <div class="stat-number">Chatbot</div>
+                    <div class="stat-label">Chatbot pintar</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">📰</div>
+                    <div class="stat-number">Artikel</div>
+                    <div class="stat-label">Berita<br>tentang kesehatan</div>
+                </div>
+                <!-- <div class="stat-item">
+                    <div class="stat-icon">🌐</div>
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Countries<br>Connected</div>
+                </div> -->
+            </section>
+
+            <div class="artikel">Berita Terbaru</div>
+            <div class="card-wrapper">
+                    {% for a in articles %}
+                    <div class="card">
+                        <img src="{{ a.image_url }}" alt="{{ a.title }}">
+                        <div class="card-content">
+                            <h3>{{ a.title }}</h3>
+                            <p>{{ a.description }}</p>
+                            {% if a.news_link %}
+                            <a href="{{ a.news_link }}" class="read-more" target="_blank">Baca selengkapnya</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+             </div>
+    </main>
+</body>
+<script>
+    function toggleChatbot() {
+        const box = document.getElementById("chatbotBox");
+        box.style.display = (box.style.display === "flex") ? "none" : "flex";
+    }
+
+    function sendMessage() {
+        const input = document.getElementById("chatInput");
+        const text = input.value.trim();
+        if (!text) return;
+
+        // tampilkan pesan user
+        addMessage(text, "user");
+
+        input.value = "";
+
+        // Kirim ke backend Flask
+        fetch("/chatbot", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({message: text})
+        })
+        .then(res => res.json())
+        .then(data => addMessage(data.response, "bot"));
+    }
+
+    function addMessage(text, sender) {
+        const body = document.getElementById("chatBody");
+
+        const msg = document.createElement("div");
+        msg.classList.add("msg");
+        msg.classList.add(sender === "user" ? "user-msg" : "bot-msg");
+        msg.textContent = text;
+
+        body.appendChild(msg);
+        body.scrollTop = body.scrollHeight;
+    }
+</script>
+</html>
