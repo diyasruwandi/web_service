@@ -1,4 +1,4 @@
-from flask import Blueprint, session, redirect, render_template, request
+from flask import Blueprint, session, redirect, render_template, request, url_for
 from models.artikel import Article
 from models import db
 
@@ -28,7 +28,7 @@ def admin_add_article():
         db.session.add(new_data)
         db.session.commit()
 
-        return redirect('/admin/articles')
+        return redirect(url_for('admin_pages.admin_articles'))
 
     return render_template('admin/tambah_artikel.html')
 
@@ -48,11 +48,11 @@ def edit_article(id):
     return render_template("admin/edit_artikel.html", article=article)
 
 
-@admin_pages.route("/admin/articles/delete/<int:id>", methods=["GET"])
+@admin_pages.route("/admin/articles/delete/<int:id>", methods=["POST"])
 def delete_article(id):
     article = Article.query.get_or_404(id)
 
     db.session.delete(article)
     db.session.commit()
 
-    return redirect("/admin/articles")
+    return redirect(url_for('admin_pages.admin_articles'))

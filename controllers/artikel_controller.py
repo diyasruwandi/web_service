@@ -86,7 +86,7 @@ def update_article(id):
 
 
 # DELETE ARTICLE
-@article_pages.route("/admin/article/<int:id>", methods=["DELETE"])
+@article_pages.route("/admin/article/<int:id>", methods=["POST"])
 def delete_article(id):
     if not admin_only():
         return jsonify({"error": "Unauthorized"}), 401

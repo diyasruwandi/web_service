@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelola Artikel</title>
 
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
@@ -98,7 +97,6 @@
 
 <body>
 
-    <!-- SIDEBAR -->
     <div class="sidebar">
         <h3>Admin Panel</h3>
 
@@ -110,7 +108,6 @@
         <a href="/logout" class="logout-btn">Logout</a>
     </div>
 
-    <!-- MAIN CONTENT -->
     <div class="content">
 
         <h2 class="mb-4">Kelola Artikel</h2>
@@ -123,7 +120,7 @@
             <table class="table table-bordered table-striped align-middle">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>No</th>
                         <th>Judul</th>
                         <th>Gambar</th>
                         <th>Link Berita</th>
@@ -145,7 +142,12 @@
                         </td>
                         <td>
                             <a href="/admin/articles/edit/{{ a.id }}" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="/admin/articles/delete/{{ a.id }}" class="btn btn-danger btn-sm">Hapus</a>
+                            <form action="/admin/articles/delete/{{ a.id }}" method="POST" class="d-inline">
+                                <button class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Yakin ingin menghapus artikel ini?')">
+                                    Hapus
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     {% endfor %}

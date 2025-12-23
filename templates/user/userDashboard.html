@@ -112,7 +112,6 @@
 
         // tampilkan pesan user
         addMessage(text, "user");
-
         input.value = "";
 
         // Kirim ke backend Flask
@@ -122,15 +121,19 @@
             body: JSON.stringify({message: text})
         })
         .then(res => res.json())
-        .then(data => addMessage(data.response, "bot"));
+        .then(data => {
+            addMessage(data.reply, "bot");
+        })
+        .catch(() => {
+            addMessage("Maaf, server sedang bermasalah.", "bot");
+        });
     }
 
     function addMessage(text, sender) {
         const body = document.getElementById("chatBody");
 
         const msg = document.createElement("div");
-        msg.classList.add("msg");
-        msg.classList.add(sender === "user" ? "user-msg" : "bot-msg");
+        msg.className = "msg " + (sender === "user" ? "user-msg" : "bot-msg");
         msg.textContent = text;
 
         body.appendChild(msg);

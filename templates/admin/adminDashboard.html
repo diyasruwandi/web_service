@@ -91,14 +91,16 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <h3>Admin Panel</h3>
+         <h3>Admin Panel</h3>
 
-        <a href="/admin/dashboard" style="color:white; font-weight:600;">Dashboard</a>
-        <a href="/admin/articles">Kelola Artikel</a>
-        <!-- <a href="#">Data Pengguna</a> -->
-        <a href="#">Riwayat OCR</a>
+         <a href="{{ url_for('admin_pages.admin_dashboard') }}" style="color:white;font-weight:600;">
+        Dashboard
+         </a>
+         <a href="{{ url_for('admin_pages.admin_articles') }}">Kelola Artikel</a>
+         <a href="#">Riwayat OCR</a>
 
-        <a href="/login" class="logout-btn">Logout</a>
+
+         <a href="{{ url_for('auth.logout') }}" class="logout-btn">Logout</a>
     </div>
 
     <!-- Content -->

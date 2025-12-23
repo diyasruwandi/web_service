@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, session
+from flask import Blueprint, render_template, request, redirect, session, url_for
 from models.user import User, db, bcrypt
 
 auth = Blueprint("auth", __name__)
@@ -18,9 +18,9 @@ def login():
             session["role"] = user.role.value
 
             if user.role.value == "admin":
-                return redirect("/admin/dashboard")
+                return redirect(url_for("admin_pages.admin_dashboard"))
             else:
-                return redirect("/user/dashboard")
+                return redirect(url_for("user_pages.user_dashboard"))
 
         error = "Email atau password salah"
 

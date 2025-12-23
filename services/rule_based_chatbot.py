@@ -19,4 +19,4 @@ def get_bot_response(user_message):
             if keyword in user_message:
                 return rule["response"]
 
-    return FALLBACK
+    return None
